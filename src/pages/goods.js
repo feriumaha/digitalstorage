@@ -13,7 +13,7 @@ const Goods = () => {
     name: '',
     price: '',
     barcode: '',
-    categoryId: ''
+    category_id: ''
   });
 
   useEffect(() => {
@@ -39,12 +39,12 @@ const Goods = () => {
       const { data, error } = await supabase
         .from('products')
         .select('*')
-        .order('name');
-
+        .order('name', { ascending: true });
+  
       if (error) {
         throw error;
       }
-
+  
       if (data) {
         setProducts(data);
       }
@@ -52,6 +52,8 @@ const Goods = () => {
       console.error('Error fetching products:', error.message);
     }
   };
+  
+  
 
   const fetchCategories = async () => {
     try {
@@ -105,7 +107,7 @@ const Goods = () => {
         name: '',
         price: '',
         barcode: '',
-        categoryId: ''
+        category_id: ''
       });
     } catch (error) {
       console.error('Error adding product:', error.message);
@@ -127,7 +129,6 @@ const Goods = () => {
                     <th>Name</th>
                     <th>Price</th>
                     <th>Barcode</th>
-                    <th>Category</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -136,7 +137,6 @@ const Goods = () => {
                       <td>{product.name}</td>
                       <td>{product.price}</td>
                       <td>{product.barcode}</td>
-                      <td>{product.categoryId}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -186,8 +186,8 @@ const Goods = () => {
               <Form.Label>Category</Form.Label>
               <Form.Control
                 as="select"
-                name="categoryId"
-                value={newProduct.categoryId}
+                name="category_id"
+                value={newProduct.category_id}
                 onChange={handleInputChange}
                 required
               >
