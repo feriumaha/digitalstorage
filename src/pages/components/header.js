@@ -8,7 +8,7 @@ const Header = ({ handleLogout }) => {
   return (
     <Navbar bg="dark" variant="dark" expand="lg" className="main-header">
       <Container>
-        <Navbar.Brand href="/">
+        <Navbar.Brand href="/dashboard">
           <span className="logo-lg"><b>Toko Aksesoris Komputer</b></span>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
